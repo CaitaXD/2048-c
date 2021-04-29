@@ -4,19 +4,23 @@
 
 /*
 Nno momento usa-se o scanf como input
-
-Creio que o comportamento da matriz esteje  correto mas e possivel que n„o
-
-Para mover os numeros na matriz foi adaptado bublesort dentro de um laÁo for
-
-Algumas direÁıe presisaram de mais laÁos por causa da ordem de varredura 
-
-As funÁoes de Input retornam a matriz
-    (n sei se vale a m„o de mudar o retorno para void e usar pointer?)
+Creio que o comportamento da matriz esteje  correto mas e possivel que n√£o
+Para mover os numeros na matriz foi adaptado bublesort dentro de um la√ßo for
+Algumas dire√ß√µe presisaram de mais la√ßos por causa da ordem de varredura
+As fun√ßoes de Input retornam a matriz
+    (n sei se vale a m√£o de mudar o retorno para void e usar pointer?)
 */
 
-int EmptyScreen(int mat[][MAX],int l,int c)
-{
+int main() {
+    int l = 4, c = 4;
+    int mat[MAX][MAX];
+    InitMat(mat, l, c);
+    UpdateScreen(mat, l, c);
+    HandleInput(mat, l, c);
+    return 0;
+}
+
+int EmptyScreen(int mat[][MAX],int l,int c) {
     system("cls");
     for (int x = 0; x < l; x++)
     {
@@ -30,29 +34,25 @@ int EmptyScreen(int mat[][MAX],int l,int c)
     return mat;
 }
 
-int UpdateScreen(int mat[][MAX], int l, int c)
-{
-    system("cls");;
-    for (int x = 0; x < l; x++)
-    {
-        for (int y = 0; y < c; y++)
-        {
+int UpdateScreen(int mat[][MAX], int l, int c) {
+    system("cls");
+    for (int x = 0; x < l; x++) {
+        for (int y = 0; y < c; y++) {
             printf("%7d", mat[x][y]);
         }
         printf("\n");
     }
     return mat;
 }
-char Input()
-{
+
+char Input() {
     char c;
     scanf_s(" %c", &c);
     return c;
 }
-void HandleInput(int mat[][MAX], int l, int c)
-{
-    while (1)
-    {    
+
+void HandleInput(int mat[][MAX], int l, int c) {
+    while (1) {
         switch (Input())
         {
         default:
@@ -72,14 +72,4 @@ void HandleInput(int mat[][MAX], int l, int c)
         }
      UpdateScreen(mat, l, c);
     }
-}
-int main()
-{  
-    int l = 4, c = 4;
-    int mat[MAX][MAX];
-    InitMat(mat, l, c);
-    UpdateScreen(mat, l, c);
-    HandleInput(mat, l, c);
-
-    return 0;
 }
