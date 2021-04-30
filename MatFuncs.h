@@ -3,13 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include<time.h>
-#define MAX 10
-int FillMat (int mat[][MAX], int l, int c);
-int InitMat (int mat[][MAX], int l, int c);
-int InputW (int mat[][MAX], int l, int c);
-int InputA (int mat[][MAX], int l, int c);
-int InputS (int mat[][MAX], int l, int c);
-int InputD (int mat[][MAX], int l, int c);
-int EmptyScreen(int mat[][MAX],int l,int c);
-void HandleInput(int mat[][MAX], int l, int c);
+#define LIM 10
+#define MAX 4
+int FillMat (int mat[][MAX]);
+int InitMat (int mat[][MAX]);
+int InputW (int mat[][MAX]);
+int InputA (int mat[][MAX]);
+int InputS (int mat[][MAX]);
+int InputD (int mat[][MAX]);
+int EmptyScreen(int mat[][MAX]);
+void HandleInput(int mat[][MAX]);
 #endif
