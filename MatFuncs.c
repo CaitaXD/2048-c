@@ -20,7 +20,7 @@ int InitMat(int mat[][MAX], int l, int c) {
 
 int FillMat(int mat[][MAX], int l, int c) {
     int count = 1;
-    system("cls");
+    clrscr();
     generate (mat, count);
     return mat;
 }
@@ -88,10 +88,10 @@ int InputD(int mat[][MAX], int l, int c) {
     for (int h = 0; h < l; h++) {
         for (k = l - 1; k > 0; k--) {
             for (j = k; j > 0; j--) {
-                if (mat[h][j] == mat[h][j + 1]) {
+                if (mat[h][j] == mat[h][j - 1]) {
                     aux = 2 * mat[h][j];
                     mat[h][j] = 0;
-                    mat[h][j + 1] = aux;
+                    mat[h][j - 1] = aux;
                 }
             }
         }
