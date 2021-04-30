@@ -55,15 +55,19 @@ void HandleInput(int mat[][MAX], int l, int c) {
         default:
             break;
         case 'a':
+            clrscr();
             PrintMat(InputW(mat, l, c), 4, 1, 1);
             break;
         case 'd':
+            clrscr();
             PrintMat(InputS(mat, l, c), 4, 1, 1);
             break;
         case 'w':
+            clrscr();
             PrintMat(InputA(mat, l, c), 4, 1, 1);
             break;
         case 's':
+            clrscr();
             PrintMat(InputD(mat, l, c), 4, 1, 1);
             break;
         }
