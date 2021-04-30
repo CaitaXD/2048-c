@@ -15,7 +15,7 @@ int main() {
     int l = 4, c = 4;
     int mat[MAX][MAX];
     InitMat(mat, l, c);
-    UpdateScreen(mat, l, c);
+    PrintMat(mat,4,1,1);
     HandleInput(mat, l, c);
     return 0;
 }
@@ -46,9 +46,7 @@ int UpdateScreen(int mat[][MAX], int l, int c) {
 }
 
 char Input() {
-    char c;
-    scanf_s(" %c", &c);
-    return c;
+   return getch();
 }
 
 void HandleInput(int mat[][MAX], int l, int c) {
@@ -58,18 +56,18 @@ void HandleInput(int mat[][MAX], int l, int c) {
         default:
             break;
         case 'a':
-            InputA(mat, l, c);
+            PrintMat(InputW(mat, l, c), 4, 1, 1);
             break;
         case 'd':
-            InputD(mat, l, c);
+            PrintMat(InputS(mat, l, c), 4, 1, 1);
             break;
         case 'w':
-            InputW(mat, l, c);
+            PrintMat(InputA(mat, l, c), 4, 1, 1);
             break;
         case 's':
-            InputS(mat, l, c);
+            PrintMat(InputD(mat, l, c), 4, 1, 1);
             break;
         }
-     UpdateScreen(mat, l, c);
+
     }
 }
