@@ -1,6 +1,8 @@
 #include "MatFuncs.h"
 
 static int slideW (int mat[][MAX], int l, int c);
+static int slideA (int mat[][MAX], int l, int c);
+static int slideD (int mat[][MAX], int l, int c);
 static int slideS (int mat[][MAX], int l, int c);
 static int generate(int mat[][MAX], int count);
 
@@ -20,57 +22,6 @@ int FillMat(int mat[][MAX], int l, int c) {
     int count = 1;
     system("cls");
     generate (mat, count);
-    return mat;
-}
-int InputD(int mat[][MAX], int l, int c) {
-    //Slide the matrix
-    int k, j, aux;
-    for (int h = 0; h < l; h++) {
-        for (k = l - 1; k > 0; k--) {
-            for (j = 0; j < k; j++) {
-                if (mat[h][j + 1] == 0) {
-                    aux = mat[h][j];
-                    mat[h][j] = mat[h][j + 1];
-                    mat[h][j + 1] = aux;
-                }
-                if (mat[h][j] == mat[h][j + 1]) {
-                    aux = 2*mat[h][j];
-                    mat[h][j] =0;
-                    mat[h][j + 1] = aux;
-                }
-            }
-        }
-    }
-    FillMat(mat, l, c);
-    return mat;
-}
-int InputA(int mat[][MAX], int l, int c) {
-    int aux = 1;
-    // Double The Equal Values
-    for (int h = 0; h < l; h++) {
-        for (int k = l - 1; k > 0; k--) {
-            for (int j = 0; j < k; j++) {
-                if (mat[h][j] == mat[h][j + 1]) {
-                    aux = 2 * mat[h][j];
-                    mat[h][j] = 0;
-                    mat[h][j + 1] = aux;
-                }
-            }
-        }
-    }
-    for (int h = 0; h < l; h++) {
-        for (int k = l - 1; k > 0; k--) {
-          for (int j = 0; j < k; j++) {
-                if (mat[h][j] == 0){
-                    aux = mat[h][j];
-                    mat[h][j] = mat[h][j + 1];
-                    mat[h][j + 1] = aux;
-                }
-
-            }
-        }
-    }
-    FillMat(mat, l, c);
     return mat;
 }
 
@@ -93,6 +44,24 @@ int InputW(int mat[][MAX], int l, int c) {
     return mat;
 }
 
+int InputA(int mat[][MAX], int l, int c) {
+    int aux = 1;
+    slideA (mat, l, c);
+    for (int h = 0; h < l; h++) {
+        for (int k = l - 1; k > 0; k--) {
+            for (int j = 0; j < k; j++) {
+                if (mat[h][j] == mat[h][j + 1]) {
+                    aux = 2 * mat[h][j];
+                    mat[h][j] = 0;
+                    mat[h][j + 1] = aux;
+                }
+            }
+        }
+    }
+    slideA (mat, l, c);
+    FillMat(mat, l, c);
+    return mat;
+}
 
 int InputS(int mat[][MAX], int l, int c) {
     int aux;
@@ -113,6 +82,58 @@ int InputS(int mat[][MAX], int l, int c) {
     return mat;
 }
 
+int InputD(int mat[][MAX], int l, int c) {
+    int k, j, aux;
+    slideD (mat, l, c);
+    for (int h = 0; h < l; h++) {
+        for (k = l - 1; k > 0; k--) {
+            for (j = k; j > 0; j--) {
+                if (mat[h][j] == mat[h][j + 1]) {
+                    aux = 2 * mat[h][j];
+                    mat[h][j] = 0;
+                    mat[h][j + 1] = aux;
+                }
+            }
+        }
+    }
+    slideD (mat, l, c);
+    FillMat(mat, l, c);
+    return mat;
+}
+
+static int slideW (int mat[][MAX], int l, int c) {
+    int aux;
+    for (int h = 0; h < l; h++) {
+        for (int k = l - 1; k > 0; k--) {
+            for (int j = 0; j < k; j++) {
+                if (mat[j][h] == 0) {
+                    aux = mat[j+1][h];
+                    mat[j+1][h] = mat[j][h];
+                    mat[j][h] = aux;
+                }
+            }
+        }
+    }
+    return mat;
+}
+
+static int slideA (int mat[][MAX], int l, int c) {
+    int aux = 1;
+    for (int h = 0; h < l; h++) {
+        for (int k = l - 1; k > 0; k--) {
+          for (int j = 0; j < k; j++) {
+                if (mat[h][j] == 0){
+                    aux = mat[h][j];
+                    mat[h][j] = mat[h][j + 1];
+                    mat[h][j + 1] = aux;
+                }
+
+            }
+        }
+    }
+    return mat;
+}
+
 static int slideS (int mat[][MAX], int l, int c) {
     int aux;
     for (int h = 0; h < l; h++) {
@@ -129,15 +150,15 @@ static int slideS (int mat[][MAX], int l, int c) {
     return mat;
 }
 
-static int slideW (int mat[][MAX], int l, int c) {
-    int aux;
+static int slideD (int mat[][MAX], int l, int c) {
+    int aux = 1;
     for (int h = 0; h < l; h++) {
         for (int k = l - 1; k > 0; k--) {
             for (int j = 0; j < k; j++) {
-                if (mat[j][h] == 0) {
-                    aux = mat[j+1][h];
-                    mat[j+1][h] = mat[j][h];
-                    mat[j][h] = aux;
+                if (mat[h][j + 1] == 0) {
+                    aux = mat[h][j];
+                    mat[h][j] = mat[h][j + 1];
+                    mat[h][j + 1] = aux;
                 }
             }
         }
