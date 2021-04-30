@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "MatFuncs.h"
+#include "MatFuncs.h" // alterar para .h
 
 /*
 Nno momento usa-se o scanf como input
@@ -24,9 +24,8 @@ int EmptyScreen(int mat[][MAX],int l,int c) {
     system("cls");
     for (int x = 0; x < l; x++)
     {
-        for (int y = 0; y < c; y++)
-        {
-           *(mat[0] + x *MAX + y) = 0;
+        for (int y = 0; y < c; y++){
+            *(mat[0] + x *MAX + y) = 0;
             printf("%7d", mat[x][y]);
         }
         printf("\n");
