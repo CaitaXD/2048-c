@@ -101,8 +101,6 @@ void PrintaCelula(int posx, int posy, int value)
 		break;
 	}
 }
-
-
 void PrintMat(int mat[][MAX],int n , int posx, int posy)
 {
 	int startPosx = posx;
