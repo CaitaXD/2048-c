@@ -1,5 +1,5 @@
 #include "StateMachine.h"
-void GameStateInputHandler(int mat[MAX][MAX])
+int GameStateInputHandler(int mat[MAX][MAX])
 {
         switch (Input())
         {
@@ -17,17 +17,23 @@ void GameStateInputHandler(int mat[MAX][MAX])
         case 's':
             PrintMat(InputS(mat), 4, 1, 1);
             break;
+        case 'q':
+            clrscr();
+            return 0;
+            break;
         }
 }
 void GameStateUpdate(int mat[MAX][MAX])
 {
-    while (1)
+    int check = 1;
+    while (check)
     {
-        GameStateInputHandler(mat);
+       check = GameStateInputHandler(mat);
     }
 }
 void GameStateStart(int mat[MAX][MAX])
 {
+    clrscr();
     InitMat(mat);
     PrintMat(mat, 4, 1, 1);
 }
