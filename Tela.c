@@ -3,7 +3,7 @@ void PrintaCelula(int posx, int posy, int value)
 {
 	switch (value)
 	{
-	default:
+	case 0:
 		textbackground(CYAN);
 		textcolor(BLACK);
 		cputsxy(posx, posy, "|   |");		posy++;
@@ -101,17 +101,13 @@ void PrintaCelula(int posx, int posy, int value)
 		break;
 	}
 }
-void PrintMat(int mat[][MAX],int n , int posx, int posy)
+void PrintMat(int mat[MAX][MAX],int n , int posx, int posy)
 {
-	int startPosx = posx;
 	for (int l = 0; l < n; l++)
 	{
-		posx = startPosx;
 		for (int c = 0; c < n; c++)
 		{
-			PrintaCelula(posx, posy, mat[l][c]);
-			posx += 5;
+			PrintaCelula(posx+c*5, posy+l*3, mat[l][c]);
 		}
-		posy += 3;
 	}
 }

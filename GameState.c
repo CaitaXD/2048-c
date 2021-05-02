@@ -1,45 +1,46 @@
 #include "StateMachine.h"
-int GameStateInputHandler(int mat[MAX][MAX])
+int GameStateInputHandler(Game *game)
 {
-        switch (Input())
-        {
+    switch (Input())
+     {
         default:
-            break;
+        break;
         case 'a':
-            PrintMat(InputA(mat), 4, 1, 1);
+            InputA(game);
             break;
         case 'd':
-            PrintMat(InputD(mat), 4, 1, 1);
+            InputD(game);
             break;
         case 'w':
-            PrintMat(InputW(mat), 4, 1, 1);
+            InputW(game);
             break;
         case 's':
-            PrintMat(InputS(mat), 4, 1, 1);
+            InputS(game);
             break;
         case 'q':
             clrscr();
             return 0;
             break;
         }
+    PrintMat(game->tabuleiro, 4, 1, 1);
 }
-void GameStateUpdate(int mat[MAX][MAX])
+void GameStateUpdate(Game *game)
 {
     int check = 1;
     while (check)
     {
-       check = GameStateInputHandler(mat);
+       check = GameStateInputHandler(game);
     }
 }
-void GameStateStart(int mat[MAX][MAX])
+void GameStateStart(Game *game)
 {
     clrscr();
-    InitMat(mat);
-    PrintMat(mat, 4, 1, 1);
+    InitMat(game);
+    PrintMat(game->tabuleiro, 4, 1, 1);
 }
 
-void GameState(int mat[MAX][MAX])
+void GameState(Game *game)
 {
-    GameStateStart(mat);
-    GameStateUpdate(mat);
+    GameStateStart(game);
+    GameStateUpdate(game);
 }

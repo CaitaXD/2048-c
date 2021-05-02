@@ -1,4 +1,4 @@
-#define MAX 10
+#define MAX 4
 typedef enum
 {
 	BLACK, /**< black color */

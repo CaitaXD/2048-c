@@ -1,4 +1,5 @@
 #define MAX 4
+#include "MatFuncs.h"
 typedef enum
 {
 	BLACK, /**< black color */
@@ -18,9 +19,9 @@ typedef enum
 	YELLOW, /**< yellow color */
 	WHITE /**< white color */
 } COLORS;
+
 char Input();
-void GameState(int mat[MAX][MAX]);
-void Options();
+void GameState(Game *game);
 
 
 

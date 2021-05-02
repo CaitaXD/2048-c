@@ -1,58 +1,56 @@
 #include "MatFuncs.h"
-static void slide (game *mat, int a, int b, int c);// agrupa os numeros para o lado selecionado
-static void soma(game *mat, int x, int y); // realiza a soma apos agrupamento
-static void generate(game *mat, int count); // gera o numero 2 ou 4 em uma posicao aleatoria
-static void writefile (game *mat); //escreve arquivo
-static void readfile (game *mat); //le arquivo
+static void slide (Game *mat, int a, int b, int c);// agrupa os numeros para o lado selecionado
+static void soma(Game *mat, int x, int y); // realiza a soma apos agrupamento
+static void generate(Game *mat, int count); // gera o numero 2 ou 4 em uma posicao aleatoria
+static void writefile (Game *mat); //escreve arquivo
+static void readfile (Game *mat); //le arquivo
 
-void InitMat(game *mat) { // inicializa o jogo
+void InitMat(Game *game) { // inicializa o jogo
     int count = 2;
-    system("cls");
     for (int i = 0; i < MAX; i++) {
         for (int j = 0; j < MAX; j++) {
-            mat->tabuleiro[i][j] = 0;
+            game->tabuleiro[i][j] = 0;
             }
         }
-    generate (mat, count);
+    generate (game, count);
 }
 
-void FillMat(game *mat) { // gera o numero 2 ou 4 apos um movimento
+void FillMat(Game *mat) { // gera o numero 2 ou 4 apos um movimento
     int count = 1;
-    system("cls");
     generate (mat, count);
 }
 
 
 
-void InputW(game *mat) { // movimento para cima
+void InputW(Game *mat) { // movimento para cima
     slide(mat, 0, 1, 0);
     soma(mat, 0, 0);
     slide(mat, 0, 1, 0);
     FillMat(mat);
 }
 
-void InputS(game *mat) { // movimento para baixo
+void InputS(Game *mat) { // movimento para baixo
     slide(mat, 1, 0, 0);
     soma(mat, 1, 0);
     slide(mat, 1, 0, 0);
     FillMat(mat);
 }
 
-void InputA(game *mat) { // movimento para esquerda
+void InputA(Game *mat) { // movimento para esquerda
     slide(mat, 0, 1, 1);
     soma(mat, 0, 1);
     slide(mat, 0, 1, 1);
     FillMat(mat);
 }
 
-void InputD(game *mat) { // movimento para direita
+void InputD(Game *mat) { // movimento para direita
     slide(mat, 1, 0, 1);
     soma(mat, 1, 1);
     slide(mat, 1, 0, 1);
     FillMat(mat);
 }
 
-static void generate (game *mat, int count) {
+static void generate (Game *mat, int count) {
     srand(time(NULL)); // comando utilizado para garantir q a semente seja sempre aleatoria
     while (count != 0) {
         int x = rand() % 4, y = rand() % 4; // gera um numero aleatorio entre 0 e 3
@@ -72,7 +70,7 @@ static void generate (game *mat, int count) {
         }
 }
 
-static void slide (game *mat, int a, int b, int c) {
+static void slide (Game *mat, int a, int b, int c) {
     for (int h = 0; h < MAX; h++) {
         for (int k = MAX-1; k > 0; k--) {
             for (int j = 0; j < k; j++) {
@@ -94,7 +92,7 @@ static void slide (game *mat, int a, int b, int c) {
     }
 }
 
-static void soma(game *mat, int x, int y) {
+static void soma(Game *mat, int x, int y) {
     if (x == 0) {
         for (int h = 0; h < MAX; h++) {
             for (int j = 0; j < MAX - 1; j++) {
@@ -136,20 +134,20 @@ static void soma(game *mat, int x, int y) {
     }
 }
 
-static void writefile (game *mat) {
-    FILE *arq = fopen("backup.dat", "w");
+static void writefile (Game *mat) {
+    FILE *arq = fopen_s(&arq,"backup.dat", "w");
     if (arq != NULL) {
-            fwrite(&mat, sizeof(game), 1, arq);
+            fwrite(&mat, sizeof(Game), 1, arq);
             fclose(arq);
         } else {
             printf("Problemas na escrita do arquivo\n");
         }
 }
 
-static void readfile (game *mat) {
-    FILE *arq = fopen("backup.dat", "rb");
+static void readfile (Game *mat) {
+    FILE *arq = fopen_s(&arq,"backup.dat", "rb");
     if (arq != NULL) {
-            fread(&mat, sizeof(game), 1, arq);
+            fread(&mat, sizeof(Game), 1, arq);
             fclose(arq);
         } else {
             printf("Problemas na leitura do arquivo\n");

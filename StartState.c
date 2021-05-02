@@ -66,7 +66,7 @@ char ScrollTroughOptions(int *option)
 	}
 }
 
-void StartState(int mat[][MAX])
+void StartState(Game *game)
 {
 	int option = 0;
 	while (1)
@@ -74,7 +74,7 @@ void StartState(int mat[][MAX])
 		switch (ScrollTroughOptions(&option))
 		{
 		case 'P':
-			GameState(mat);
+			GameState(game->tabuleiro);
 			break;
 		case 'E':
 			exit(0);

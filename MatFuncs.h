@@ -10,14 +10,14 @@ typedef struct jogo {
     int tabuleiro[MAX][MAX];
     int score;
     char nome[40];
-}game;
-void InitMat (game *mat);
-void FillMat (game *mat);
-void InputW (game *mat);
-void InputA (game *mat);
-void InputS (game *mat);
-void InputD (game *mat);
-void EmptyScreen(game *mat);
-void UpdateScreen(game *mat);
-void HandleInput(game *mat);
+}Game;
+void InitMat (Game *mat);
+void FillMat (Game *mat);
+void InputW (Game *mat);
+void InputA (Game *mat);
+void InputS (Game *mat);
+void InputD (Game *mat);
+void EmptyScreen(Game *mat);
+void UpdateScreen(Game *mat);
+void HandleInput(Game *mat);
 #endif
