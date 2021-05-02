@@ -15,9 +15,19 @@ int main() {
     clrscr();
     int l = 4, c = 4;
     int mat[MAX][MAX];
+    int test[MAX][MAX] = { {8,4,4,0},
+                           {2,2,4,8},
+                           {0,4,4,8},
+                           {0,4,4,8}};
+    int testWandS[MAX][MAX] = { 
+                       {8,0,2,4},
+                       {4,4,2,2},
+                       {4,4,4,2},
+                       {0,8,8,8} };
+
     InitMat(mat, l, c);
-    PrintMat(mat,4,1,1);
-    HandleInput(mat, l, c);
+    PrintMat(test,4,1,1);
+    HandleInput(testWandS, l, c);
     return 0;
 }
 
@@ -56,16 +66,16 @@ void HandleInput(int mat[][MAX], int l, int c) {
         default:
             break;
         case 'a':
-            PrintMat(InputW(mat, l, c), 4, 1, 1);
-            break;
-        case 'd':
-            PrintMat(InputS(mat, l, c), 4, 1, 1);
-            break;
-        case 'w':
             PrintMat(InputA(mat, l, c), 4, 1, 1);
             break;
-        case 's':
+        case 'd':
             PrintMat(InputD(mat, l, c), 4, 1, 1);
+            break;
+        case 'w':
+            PrintMat(InputW(mat, l, c), 4, 1, 1);
+            break;
+        case 's':
+            PrintMat(InputS(mat, l, c), 4, 1, 1);
             break;
         }
 

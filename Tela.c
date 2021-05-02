@@ -105,15 +105,15 @@ void PrintaCelula(int posx, int posy, int value)
 
 void PrintMat(int mat[][MAX],int n , int posx, int posy)
 {
-	int startPosy = posy;
+	int startPosx = posx;
 	for (int l = 0; l < n; l++)
 	{
-		posy = startPosy;
+		posx = startPosx;
 		for (int c = 0; c < n; c++)
 		{
 			PrintaCelula(posx, posy, mat[l][c]);
-			posy += 3;
+			posx += 5;
 		}
-		posx += 5;
+		posy += 3;
 	}
 }
