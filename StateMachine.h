@@ -1,5 +1,6 @@
 #define MAX 4
 #include "MatFuncs.h"
+#include <string.h>
 typedef enum
 {
 	BLACK, /**< black color */
@@ -19,9 +20,17 @@ typedef enum
 	YELLOW, /**< yellow color */
 	WHITE /**< white color */
 } COLORS;
-
+void GameStateUpdate(Game* game);
+void GameStateStart(Game* game);
 char Input();
+void PrintScore(Game* game);
 void GameState(Game *game);
-
+static void writefile(Game* mat); //escreve arquivo
+static void readfile(Game* mat); //le arquivo
+void recoveryGame(Game* mat, Game* savedGames[LIM], int n);
+void saveGame(Game* mat, int n);
+Game loadGame();
+void InputR(Game* mat, int* count);
+void saveMove(Game* mat, int* count);
 
 

@@ -19,4 +19,4 @@ typedef enum
 	WHITE /**< white color */
 } COLORS;
 void PrintaCelula(int l, int c, int cell);
-
+void PrintMat(int mat[MAX][MAX], int n, int posx, int posy);
