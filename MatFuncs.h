@@ -9,7 +9,7 @@
 
 
 typedef struct jogo {
-    int hscore[MAX], tabuleiro[MAX][MAX], goback[MAX][MAX][MAX];
+    int tabuleiro[MAX][MAX], historyMat[MAX][MAX][MAX];
     int score, moves, backmoves;
     char nome[TAM];
 }Game;
@@ -22,4 +22,5 @@ void InputD (Game *mat);
 static void slide(Game* mat, int a, int b, int c);// agrupa os numeros para o lado selecionado
 static void soma(Game* mat, int x, int y); // realiza a soma apos agrupamento
 static void generate(Game* mat, int count); // gera o numero 2 ou 4 em uma posicao aleatoria
+int CheckLegalMove(Game* game);
 #endif

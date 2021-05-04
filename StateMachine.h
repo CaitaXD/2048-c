@@ -23,7 +23,7 @@ typedef enum
 void GameStateUpdate(Game* game);
 void GameStateStart(Game* game);
 char Input();
-void PrintScore(Game* game);
+void PrintGameInfo(Game* game);
 void GameState(Game *game);
 static void writefile(Game* mat); //escreve arquivo
 static void readfile(Game* mat); //le arquivo
@@ -31,6 +31,9 @@ void recoveryGame(Game* mat, Game* savedGames[LIM], int n);
 void saveGame(Game* mat, int n);
 Game loadGame();
 void InputR(Game* mat, int* count);
-void saveMove(Game* mat, int* count);
+void SavePrevius(Game* mat, int index);
+void PrintHighSocres();
+void SortScores(int vetor[], int n);
+void SaveAtual(Game* mat);
 
 

@@ -6,7 +6,7 @@ int CheckOption(int *option)
 	int input = Input();
 	if (input == 's')
 	{
-		if (value < 2)
+		if (value < 3)
 		{
 			value++;
 		}
@@ -40,29 +40,46 @@ char ScrollTroughOptions(int *option, Game *game)
 		textcolor(WHITE);
 		cputsxy(5, 10, "Carregar Jogo Salvo");
 		cputsxy(5, 15, "Sair");
-		cputsxy(5, 20, "E to Select W to Scroll Up S to Scroll Down");
+		cputsxy(5, 20, "High Scores");
+		cputsxy(5, 25, "E to Select W to Scroll Up S to Scroll Down");
 		if (CheckOption(option) == 1)
 			return 'P';
 		break;
 	case 1:
+		textcolor(WHITE);
 		cputsxy(5, 5, "Novo Jogo");
 		textcolor(RED);
 		cputsxy(5, 10, "Carregar Jogo Salvo");
 		textcolor(WHITE);
 		cputsxy(5, 15, "Sair");
-		cputsxy(5, 20, "E to Select W to Scroll Up S to Scroll Down");
+		cputsxy(5, 20, "High Scores");
+		cputsxy(5, 25, "E to Select W to Scroll Up S to Scroll Down");
 		if (CheckOption(option) == 1)
 			return 'L';
 		break;
 	case 2:
+		textcolor(WHITE);
 		cputsxy(5, 5, "Novo Jogo");
 		cputsxy(5, 10, "Carregar Jogo Salvo");
 		textcolor(RED);
 		cputsxy(5, 15, "Sair");
 		textcolor(WHITE);
-		cputsxy(5, 20, "E to Select W to Scroll Up S to Scroll Down");
+		cputsxy(5, 20, "High Scores");
+		cputsxy(5, 25, "E to Select W to Scroll Up S to Scroll Down");
 		if (CheckOption(option) == 1)
 			return 'E';
+		break;
+	case 3:
+		textcolor(WHITE);
+		cputsxy(5, 5, "Novo Jogo");
+		cputsxy(5, 10, "Carregar Jogo Salvo");
+		cputsxy(5, 15, "Sair");
+		textcolor(RED);
+		cputsxy(5, 20, "High Scores");
+		textcolor(WHITE);
+		cputsxy(5, 25, "E to Select W to Scroll Up S to Scroll Down");
+		if (CheckOption(option) == 1)
+			return 'H';
 		break;
 	}
 }
@@ -86,20 +103,76 @@ void StartState(Game *game)
 			newGame = loadGame();
 			clrscr();
 			PrintMat(&newGame.tabuleiro, 4, 1, 1);
-
 			textbackground(BLACK);
 			textcolor(WHITE);
-			int score = newGame.score;
+			cputsxy(25, 5, "W,A,S,D: Slide");
+			cputsxy(25, 10, "Q: Save Game E: Back to Menu");
+	
+			int score = game->score;
 			int length = snprintf(NULL, 0, "%d", score);
 			char* str = malloc(length + 1);
 			snprintf(str, length + 1, "%d", score);
 			cputsxy(25, 1, "Socre:");
 			cputsxy(32, 1, str);
+			int currentMoves = game->moves;
+			length = snprintf(NULL, 0, "%d", currentMoves);
+			str = malloc(length + 1);
+			snprintf(str, length + 1, "%d", currentMoves);
+			cputsxy(50, 1, str);
+
+
+
 			GameStateUpdate(&newGame.tabuleiro);
+			break;
+		case 'H':
+			PrintHighSocres();
 			break;
 		}
 		
 	}
+}
+void PrintHighSocres()
+{
+	clrscr();
+	Game games[5] = {0,0,0,0,0};
+	int scores[5];
+	FILE  *arq;
+	fopen_s(&arq, "backup.dat", "rb+");
+	long pos = sizeof(Game);
+	fseek(arq, 0L, SEEK_END);
+	int fileSize = ftell(arq);
+	int items = fileSize / sizeof(Game);
+	fseek(arq,0, SEEK_SET);
+	fread(&games, sizeof(Game), items, arq);
+	int x = 0, position = 1;
+	while (x < items)
+	{
+		int score = games[x].score;
+		if (score != 0)
+			scores[x] = score;
+		x++;
+	}
+	SortScores(games,items);
+	for (x = 0; x < 5; x++)
+	{
+		int score = games[x].score;
+		if (score != 0)
+		{
+			int length = snprintf(NULL, 0, "%d", score);
+			char* str = malloc(length + 1);
+			snprintf(str, length + 1, "%d", score);
+			cputsxy(5, position, "Name:");
+			cputsxy(25, position, games[x].nome);
+			cputsxy(50, position, "Socre:");
+			cputsxy(80, position, str);
+			position = position + 5;
+		}
+	}
+	fclose(arq);
+	do
+	{
+		
+	} while (Input() != 'e');
 }
 Game loadGame() {
 	Game game;
@@ -136,5 +209,19 @@ Game loadGame() {
 	else
 	{
 		exit(0);
+	}
+}
+void SortScores(Game vetor[], int n)
+{
+	int k, j; Game aux;
+	for (k = n - 1; k > 0; k--)
+	{
+		for (j = 0; j < k; j++) {
+			if (vetor[j].score < vetor[j + 1].score) {
+				aux = vetor[j];
+				vetor[j] = vetor[j + 1];
+				vetor[j + 1] = aux;
+			}
+		}
 	}
 }

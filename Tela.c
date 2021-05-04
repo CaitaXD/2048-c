@@ -1,4 +1,5 @@
 #include "Tela.h"
+#include <string.h>
 void PrintaCelula(int posx, int posy, int value)
 {
 	switch (value)
@@ -105,9 +106,12 @@ void PrintMat(int mat[MAX][MAX],int n , int posx, int posy)
 {
 	for (int l = 0; l < n; l++)
 	{
+		posx = 1;
 		for (int c = 0; c < n; c++)
 		{
-			PrintaCelula(posx+c*5, posy+l*3, mat[l][c]);
+			PrintaCelula(posx, posy, mat[l][c]);
+			posx = posx + 6;
 		}
+		posy = posy + 4;
 	}
 }
