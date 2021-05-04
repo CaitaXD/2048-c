@@ -1,6 +1,7 @@
 #define MAX 4
 #include "MatFuncs.h"
 #include <string.h>
+//Maquina de Estados Finita
 typedef enum
 {
 	BLACK, /**< black color */
@@ -35,5 +36,7 @@ void SavePrevius(Game* mat, int index);
 void PrintHighSocres();
 void SortScores(int vetor[], int n);
 void SaveAtual(Game* mat);
+void StartState(Game* game);
+void victoryCondition(Game* game);
 
 

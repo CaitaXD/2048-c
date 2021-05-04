@@ -2,8 +2,14 @@
 #include <string.h>
 void PrintaCelula(int posx, int posy, int value)
 {
+	//Escreve uma celula do tabuleiro na tela
+	//int posx: a coordenada  x
+	//int posy: a coordenada y
+	//int value: o valor da celula
 	switch (value)
 	{
+	//textbackground muda a cor de fundo da tela
+	//textcolor muda a cor do textp
 	case 0:
 		textbackground(CYAN);
 		textcolor(BLACK);
@@ -104,6 +110,11 @@ void PrintaCelula(int posx, int posy, int value)
 }
 void PrintMat(int mat[MAX][MAX],int n , int posx, int posy)
 {
+	//Printa o tabuleiro na tela celula por celula
+	//int mat: matriz 4x4
+	//int n: valor maximo dos laços
+	//posx coordenada x
+	//posy coordeanada y
 	for (int l = 0; l < n; l++)
 	{
 		posx = 1;

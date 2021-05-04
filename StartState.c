@@ -1,8 +1,9 @@
 #include "StateMachine.h"
-
 int CheckOption(int *option)
 {
+	//Ouve o teclado e navega no menu ou aciona a rotina
 	int value = *option;
+	//inteiro relacionado a opção selecionada
 	int input = Input();
 	if (input == 's')
 	{
@@ -29,8 +30,10 @@ int CheckOption(int *option)
 
 char ScrollTroughOptions(int *option, Game *game)
 {
+	//Escreve as opções do menu na tela
 	textbackground(BLACK);
 	int value = *option;
+	//interiro relacionado a opção selecionada na tela
 	clrscr();
 	switch (value)
 	{
@@ -86,18 +89,24 @@ char ScrollTroughOptions(int *option, Game *game)
 
 void StartState(Game *game)
 {
+	//Estado Inicial
 	int option = 0;
+	//Loaço responsavel pela navegção dos menus
 	while (1)
 	{
 		switch (ScrollTroughOptions(&option, game))
 		{
+		//Dado o retono de ScrollTroughOptions e aciona a rotina equivalente
 		case 'P':
+			//Inicia O GameState 
 			GameState(game->tabuleiro);
 			break;
 		case 'E':
+			//Fecha a aplicação
 			exit(0);
 			break;
 		case 'L':
+			//Rotina responsavel por Carregar um jogo
 			clrscr();
 			Game newGame = {0};
 			newGame = loadGame();
@@ -131,8 +140,10 @@ void StartState(Game *game)
 		
 	}
 }
+
 void PrintHighSocres()
 {
+	//Escreve os Maior Socres na tela
 	clrscr();
 	Game games[5] = {0,0,0,0,0};
 	int scores[5];
@@ -175,6 +186,7 @@ void PrintHighSocres()
 	} while (Input() != 'e');
 }
 Game loadGame() {
+	//Carrega um jogo de um arquivo e retorna no struct jogo
 	Game game;
 	int slot = 0;
 	clrscr();
@@ -213,6 +225,7 @@ Game loadGame() {
 }
 void SortScores(Game vetor[], int n)
 {
+	//Bublesort pra ordenar os scores
 	int k, j; Game aux;
 	for (k = n - 1; k > 0; k--)
 	{

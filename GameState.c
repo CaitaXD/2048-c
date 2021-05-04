@@ -1,7 +1,10 @@
 #include "StateMachine.h"
+//Estado de jogo
 void GameState(Game* game)
 {
+    //Rotina do Estado de jogo
     GameStateStart(game);
+    //Preenche o historico de jogadas
     for (int z = 0; z < 2; z++)
     {
         for (int x = 0; x < MAX; x++)
@@ -16,6 +19,7 @@ void GameState(Game* game)
 }
 int GameStateInputHandler(Game *game, int *count)
 {
+    //Ouve o Teclado e executa uma rotina baseada na tecla apertada
     switch (Input())
      {
         default:
@@ -59,10 +63,13 @@ int GameStateInputHandler(Game *game, int *count)
         }
     PrintGameInfo(game);
     PrintMat(game->tabuleiro, 4, 1, 1);
+    victoryCondition(game);
 }
 void GameStateUpdate(Game *game)
 {
+    //Rotina de repetição do estado
     int check = 1;
+    //check valor responsavel por fechar o loop
     int count = 0;
     while (check)
     {
@@ -71,6 +78,8 @@ void GameStateUpdate(Game *game)
 }
 void GameStateStart(Game *game)
 {
+    //Rotina Executada no inicio do estado de jogo
+    //clrscr(); limpa a tela
     clrscr();
     game->moves = 0;
     InitMat(game);
@@ -78,6 +87,7 @@ void GameStateStart(Game *game)
     textbackground(BLACK);
     textcolor(WHITE);
     PrintGameInfo(game);
+    //cputsxy escreve na tela
     cputsxy(25, 5, "W,A,S,D: Slide");
     cputsxy(25, 10, "Q: Save Game E: Back to Menu");
 
@@ -160,4 +170,19 @@ void PrintGameInfo(Game* game)
     snprintf(str, length + 1, "%d", currentMoves);
     cputsxy(50, 1, str);
     cputsxy(40, 1, "Moves: ");
+}
+void victoryCondition(Game* game)
+{
+    for (int x = 0; x < MAX; x++)
+    {
+        for (int y = 0; y < MAX; y++)
+        {
+            if (game->tabuleiro[x][y] == 2048)
+            {
+                do {} while (Input() == NULL);
+                clrscr();
+                saveGame(game);
+            }
+        }
+    }
 }

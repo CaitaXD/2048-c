@@ -1,5 +1,0 @@
-﻿  Tela.c
-C:\Users\Caetano\Desktop\2048\Tela.c(8,17): warning C4013: 'textbackground' indefinido; assumindo extern retornando int
-C:\Users\Caetano\Desktop\2048\Tela.c(9,12): warning C4013: 'textcolor' indefinido; assumindo extern retornando int
-C:\Users\Caetano\Desktop\2048\Tela.c(10,10): warning C4013: 'cputsxy' indefinido; assumindo extern retornando int
-  2048.vcxproj -> C:\Users\Caetano\Desktop\2048\Debug\2048.exe

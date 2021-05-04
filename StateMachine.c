@@ -1,5 +1,6 @@
 #include "StateMachine.h"
 char Input()
 {
-	return getch();
+	//Ouve o teclado e retorna a tecla precionada
+	return _getch();
 }

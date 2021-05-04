@@ -1,6 +1,5 @@
 #include "MatFuncs.h"
 
-
 void InitMat(Game *game) { // inicializa o jogo
     int count = 2;
     game->score = 0;
@@ -146,6 +145,8 @@ static void soma(Game *mat, int x, int y) {
 }
 int CheckLegalMove(Game* game)
 {
+    //Varrre toda matriz e compara com a matriz anterior guardada no struct game
+    //Varre até achar um valor diferente se nao achar é porque elas sao iguais, o que significa que nao foi executado um movimento
     for(int x= 0; x<MAX; x++)
     {
         for (int y= 0 ; y < MAX; y++)

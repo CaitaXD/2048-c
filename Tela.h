@@ -1,4 +1,5 @@
 #define MAX 4
+#include <conio.h>
 typedef enum
 {
 	BLACK, /**< black color */
