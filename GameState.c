@@ -89,7 +89,7 @@ void GameStateStart(Game *game)
     PrintGameInfo(game);
     //cputsxy escreve na tela
     cputsxy(25, 5, "W,A,S,D: Slide");
-    cputsxy(25, 10, "Q: Save Game E: Back to Menu");
+    cputsxy(25, 10, "Q: Save Game E: Back to Menu R: TO Go Back 1 move");
 
 }
 void saveGame(Game* mat) {
