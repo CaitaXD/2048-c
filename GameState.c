@@ -185,4 +185,22 @@ void victoryCondition(Game* game)
             }
         }
     }
+
+    for (int x = 0; x < MAX; x++)
+    {
+        for (int y = 0; y < MAX; y++)
+        {
+            if (game->tabuleiro[x][y] == 0)
+            {
+                return;
+            }
+        }
+    }
+    do {
+        textbackground(BLACK);
+        textcolor(WHITE);
+        clrscr();
+        cputsxy(1, 1, "Game Over Q to Save Score");
+    } while (Input() == NULL);
+  
 }
