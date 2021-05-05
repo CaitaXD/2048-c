@@ -91,7 +91,7 @@ void StartState(Game *game)
 {
 	//Estado Inicial
 	int option = 0;
-	//Loaço responsavel pela navegção dos menus
+	//Laço responsavel pela navegção dos menus
 	while (1)
 	{
 		switch (ScrollTroughOptions(&option, game))

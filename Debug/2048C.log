@@ -1,3 +1,21 @@
-﻿  MatFuncs.c
-C:\Users\Caetano\Desktop\2048C\MatFuncs.c(55,21): warning C4244: 'função': conversão de 'time_t' para 'unsigned int', possível perda de dados
+﻿  GameState.c
+C:\Users\Caetano\Desktop\2048C\GameState.c(28,36): warning C4047: 'função': 'int' difere em níveis de indireção de 'int *'
+C:\Users\Caetano\Desktop\2048C\GameState.c(28,31): warning C4024: 'SavePrevius': tipos diferentes para parâmetro formal e real 2
+C:\Users\Caetano\Desktop\2048C\GameState.c(34,36): warning C4047: 'função': 'int' difere em níveis de indireção de 'int *'
+C:\Users\Caetano\Desktop\2048C\GameState.c(34,31): warning C4024: 'SavePrevius': tipos diferentes para parâmetro formal e real 2
+C:\Users\Caetano\Desktop\2048C\GameState.c(40,36): warning C4047: 'função': 'int' difere em níveis de indireção de 'int *'
+C:\Users\Caetano\Desktop\2048C\GameState.c(40,31): warning C4024: 'SavePrevius': tipos diferentes para parâmetro formal e real 2
+C:\Users\Caetano\Desktop\2048C\GameState.c(46,36): warning C4047: 'função': 'int' difere em níveis de indireção de 'int *'
+C:\Users\Caetano\Desktop\2048C\GameState.c(46,31): warning C4024: 'SavePrevius': tipos diferentes para parâmetro formal e real 2
+C:\Users\Caetano\Desktop\2048C\GameState.c(52,19): warning C4013: 'clrscr' indefinido; assumindo extern retornando int
+C:\Users\Caetano\Desktop\2048C\GameState.c(65,13): warning C4013: 'PrintMat' indefinido; assumindo extern retornando int
+C:\Users\Caetano\Desktop\2048C\GameState.c(87,19): warning C4013: 'textbackground' indefinido; assumindo extern retornando int
+C:\Users\Caetano\Desktop\2048C\GameState.c(88,14): warning C4013: 'textcolor' indefinido; assumindo extern retornando int
+C:\Users\Caetano\Desktop\2048C\GameState.c(91,12): warning C4013: 'cputsxy' indefinido; assumindo extern retornando int
+C:\Users\Caetano\Desktop\2048C\GameState.c(95,26): warning C4029: lista de parâmetros formais declarada diferente da definição
+C:\Users\Caetano\Desktop\2048C\GameState.c(96,10): warning C4101: 'savedGames': variável local não referenciada
+C:\Users\Caetano\Desktop\2048C\GameState.c(138,34): warning C4028: parâmetro formal 2 diferente da declaração
+C:\Users\Caetano\Desktop\2048C\GameState.c(182,45): warning C4047: '==': 'int' difere em níveis de indireção de 'void *'
+C:\Users\Caetano\Desktop\2048C\GameState.c(204,29): warning C4047: '==': 'int' difere em níveis de indireção de 'void *'
+C:\Users\Caetano\Desktop\2048C\GameState.c(67): warning C4715: 'GameStateInputHandler': nem todos os caminhos de controle retornam um valor
   2048C.vcxproj -> C:\Users\Caetano\Desktop\2048C\Debug\2048C.exe

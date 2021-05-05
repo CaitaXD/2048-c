@@ -13,6 +13,8 @@ int main()
     game.backmoves = 1;
     StartState(&game);
     return 0;
+    //Inicializa os valores do struct jogo necessarios para começar a execução
+    // Inicia a rotina StartState
 }
 
 

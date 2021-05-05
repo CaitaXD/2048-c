@@ -149,7 +149,7 @@ int CheckLegalMove(Game* game)
     //Varre até achar um valor diferente se nao achar é porque elas sao iguais, o que significa que nao foi executado um movimento
     for(int x= 0; x<MAX; x++)
     {
-        for (int y= 0 ; y < MAX; y++)
+        for (int y = 0; y < MAX; y++)
         {
             if (game->tabuleiro[x][y] != game->historyMat[0][x][y])
             {
