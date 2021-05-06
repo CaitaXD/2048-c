@@ -1,7 +1,7 @@
 #include "StateMachine.h"
 int CheckOption(int *option)
 {
-	//Ouve o teclado e navega no menu ou aciona a rotina
+	//Le o teclado e navega no menu ou aciona a rotina
 	int value = *option;
 	//inteiro relacionado a opção selecionada
 	int input = Input();
@@ -98,7 +98,7 @@ void StartState(Game *game)
 		{
 		//Dado o retono de ScrollTroughOptions e aciona a rotina equivalente
 		case 'P':
-			//Inicia O GameState 
+			//Inicia O GameState
 			GameState(game->tabuleiro);
 			break;
 		case 'E':
@@ -116,12 +116,12 @@ void StartState(Game *game)
 			textcolor(WHITE);
 			cputsxy(25, 5, "W,A,S,D: Slide");
 			cputsxy(25, 10, "Q: Save Game E: Back to Menu");
-	
+
 			int score = game->score;
 			int length = snprintf(NULL, 0, "%d", score);
 			char* str = malloc(length + 1);
 			snprintf(str, length + 1, "%d", score);
-			cputsxy(25, 1, "Socre:");
+			cputsxy(25, 1, "Score:");
 			cputsxy(32, 1, str);
 			int currentMoves = game->moves;
 			length = snprintf(NULL, 0, "%d", currentMoves);
@@ -137,7 +137,7 @@ void StartState(Game *game)
 			PrintHighSocres();
 			break;
 		}
-		
+
 	}
 }
 
@@ -145,10 +145,14 @@ void PrintHighSocres()
 {
 	//Escreve os Maior Socres na tela
 	clrscr();
-	Game games[5] = {0,0,0,0,0};
-	int scores[5];
+	Game games[10] = {0};
+	int scores[10];
 	FILE  *arq;
 	fopen_s(&arq, "backup.dat", "rb+");
+	if (arq == NULL)
+	{
+		fopen_s(&arq, "backup.dat", "w");
+	}
 	long pos = sizeof(Game);
 	fseek(arq, 0L, SEEK_END);
 	int fileSize = ftell(arq);
@@ -182,7 +186,7 @@ void PrintHighSocres()
 	fclose(arq);
 	do
 	{
-		
+
 	} while (Input() != 'e');
 }
 Game loadGame() {
@@ -207,10 +211,10 @@ Game loadGame() {
 			fclose(arq);
 			StartState(&game);
 		}
-		scanf_s(" %d%*c", &slot);	
+		scanf_s(" %d%*c", &slot);
 		pos = (sizeof(Game)) * (slot);
 	}
-	if (arq != NULL) 
+	if (arq != NULL)
 	{
 		clrscr();
 		fseek(arq, pos, SEEK_SET);

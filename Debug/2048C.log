@@ -14,8 +14,8 @@ C:\Users\Caetano\Desktop\2048C\GameState.c(88,14): warning C4013: 'textcolor' in
 C:\Users\Caetano\Desktop\2048C\GameState.c(91,12): warning C4013: 'cputsxy' indefinido; assumindo extern retornando int
 C:\Users\Caetano\Desktop\2048C\GameState.c(95,26): warning C4029: lista de parâmetros formais declarada diferente da definição
 C:\Users\Caetano\Desktop\2048C\GameState.c(96,10): warning C4101: 'savedGames': variável local não referenciada
-C:\Users\Caetano\Desktop\2048C\GameState.c(138,34): warning C4028: parâmetro formal 2 diferente da declaração
-C:\Users\Caetano\Desktop\2048C\GameState.c(182,45): warning C4047: '==': 'int' difere em níveis de indireção de 'void *'
-C:\Users\Caetano\Desktop\2048C\GameState.c(204,29): warning C4047: '==': 'int' difere em níveis de indireção de 'void *'
+C:\Users\Caetano\Desktop\2048C\GameState.c(160,34): warning C4028: parâmetro formal 2 diferente da declaração
+C:\Users\Caetano\Desktop\2048C\GameState.c(202,45): warning C4047: '==': 'int' difere em níveis de indireção de 'void *'
+C:\Users\Caetano\Desktop\2048C\GameState.c(223,33): warning C4047: '==': 'int' difere em níveis de indireção de 'void *'
 C:\Users\Caetano\Desktop\2048C\GameState.c(67): warning C4715: 'GameStateInputHandler': nem todos os caminhos de controle retornam um valor
   2048C.vcxproj -> C:\Users\Caetano\Desktop\2048C\Debug\2048C.exe

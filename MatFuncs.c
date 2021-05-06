@@ -1,30 +1,23 @@
 #include "MatFuncs.h"
 
 void InitMat(Game *game) { // inicializa o jogo
-    int count = 2;
     game->score = 0;
     game->moves = 0;
-    game->backmoves = MAX;
+    game->backmoves = 1;
     for (int i = 0; i < MAX; i++) {
         for (int j = 0; j < MAX; j++) {
             game->tabuleiro[i][j] = 0;
             }
         }
-    generate (game, count);
-}
-
-void FillMat(Game *mat) { // gera o numero 2 ou 4 apos um movimento
-    int count = 1;
-    generate (mat, count);
+    generate (game, 2);
 }
 
 void InputW(Game *mat) { // movimento para cima
-
     slide(mat, 0, 1, 0);
     soma(mat, 0, 0);
     slide(mat, 0, 1, 0);
     if(CheckLegalMove(mat))
-        FillMat(mat);
+        generate(mat, 1);
 }
 
 void InputS(Game *mat) { // movimento para baixo
@@ -32,7 +25,7 @@ void InputS(Game *mat) { // movimento para baixo
     soma(mat, 1, 0);
     slide(mat, 1, 0, 0);
     if (CheckLegalMove(mat))
-        FillMat(mat);
+        generate(mat, 1);
 }
 
 void InputA(Game *mat) { // movimento para esquerda
@@ -40,7 +33,7 @@ void InputA(Game *mat) { // movimento para esquerda
     soma(mat, 0, 1);
     slide(mat, 0, 1, 1);
     if (CheckLegalMove(mat))
-        FillMat(mat);
+        generate(mat, 1);
 }
 
 void InputD(Game *mat) { // movimento para direita
@@ -48,7 +41,7 @@ void InputD(Game *mat) { // movimento para direita
     soma(mat, 1, 1);
     slide(mat, 1, 0, 1);
     if (CheckLegalMove(mat))
-        FillMat(mat);
+        generate(mat, 1);
 }
 
 static void generate (Game *mat, int count) {
@@ -58,7 +51,7 @@ static void generate (Game *mat, int count) {
         int  sort = rand() % 100; // gera um numero aleatorio entre 0 e 99
 
         // a logica abaixo garante que o numero 4 tenha apenas 10% de chances de aparecer. LIM = 10.
-        if (sort > LIM && mat->tabuleiro[x][y] == 0) {
+        if (sort >= LIM && mat->tabuleiro[x][y] == 0) {
             count--;
             mat->tabuleiro[x][y] = 2;
             }
@@ -120,7 +113,7 @@ static void soma(Game *mat, int x, int y) {
     } else {
         if (x == 1) {
             for (int h = MAX - 1; h >= 0; h--) {
-                for (int j = MAX - 1; j >= 0; j--) {
+                for (int j = MAX - 2; j >= 0; j--) {
                     if (y == 0) { // soma para S
                         if (mat->tabuleiro[j + 1][h] == mat->tabuleiro[j][h]) {
                             mat->tabuleiro[j + 1][h] = mat->tabuleiro[j][h]*2;
@@ -145,11 +138,9 @@ static void soma(Game *mat, int x, int y) {
 }
 int CheckLegalMove(Game* game)
 {
-    //Varrre toda matriz e compara com a matriz anterior guardada no struct game
-    //Varre até achar um valor diferente se nao achar é porque elas sao iguais, o que significa que nao foi executado um movimento
     for(int x= 0; x<MAX; x++)
     {
-        for (int y = 0; y < MAX; y++)
+        for (int y= 0 ; y < MAX; y++)
         {
             if (game->tabuleiro[x][y] != game->historyMat[0][x][y])
             {

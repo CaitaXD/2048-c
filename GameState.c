@@ -94,18 +94,40 @@ void GameStateStart(Game *game)
 }
 void saveGame(Game* mat) {
     Game savedGames[MAX];
+    FILE* arq;
+    fopen_s(&arq, "backup.dat", "rb+");
+    if(arq == NULL)
+    {
+        fopen_s(&arq, "backup.dat", "w");
+    }
+    fseek(arq, 0L, SEEK_END);
+    int fileSize = ftell(arq);
     int slot = 0;
     textbackground(BLACK);
     textcolor(WHITE);
     cputsxy(1,1,"Insira o nome do jogador: ");
     char nome[40];
     fgets(nome, 40, stdin);
-    cputsxy(1, 5, "Insira o numero do slot: ");
-    scanf_s(" %d%*c",&slot);
+    fflush(stdin);
+    int slots = (fileSize / sizeof(Game)-1);
+    if (slots == -1) slots = 0;
+    int length = snprintf(NULL, 0, "%d", slots);
+    char* str = malloc(length + 1);
+    snprintf(str, length + 1, "%d", slots);
+
+    fseek(arq, 0L, SEEK_SET);
+    do {
+        clrscr();
+        textbackground(BLACK);
+        textcolor(WHITE);
+        cputsxy(43, 5, str);
+        cputsxy(45, 5, "Slots Salvos Subscreva ou salve no proximo slot");
+        cputsxy(1, 5, "Insira o numero do slot: ");
+        scanf_s(" %d%*c", &slot);
+    }while(slot == 0 || slot -1> slots || slot > 20);
     nome[strlen(nome) - 1] = '\0';
     strcpy_s(mat->nome,40,nome);
-    FILE* arq;
-    fopen_s(&arq, "backup.dat", "rb+");
+
     if (arq != NULL) {
         fseek(arq, slot*sizeof(Game), SEEK_SET);
         fwrite(mat, sizeof(Game), 1, arq);
@@ -119,8 +141,10 @@ void saveGame(Game* mat) {
         return;
     }
     clrscr();
+
 }
-void InputR(Game* mat, int* count) 
+
+void InputR(Game* mat, int* count)
 {
     if(mat->moves > 0 && mat->backmoves>0)
     {
@@ -129,8 +153,6 @@ void InputR(Game* mat, int* count)
         for (int x = 0; x < MAX; x++) {
             for (int y = 0; y < MAX; y++) {
                 mat->tabuleiro[x][y] = mat->historyMat[1][x][y];
-                mat->historyMat[2][x][y] = mat->historyMat[3][x][y];
-                mat->historyMat[1][x][y] = mat->historyMat[2][x][y];
             }
         }
     }
@@ -139,8 +161,6 @@ void SavePrevius(Game* mat, int *index)
 {
     for (int x = 0; x < MAX; x++) {
         for (int y = 0; y < MAX; y++) {
-            mat->historyMat[3][x][y] = mat->historyMat[2][x][y];
-            mat->historyMat[2][x][y] = mat->historyMat[1][x][y];
             mat->historyMat[1][x][y] =  mat->tabuleiro[x][y];
 
         }
@@ -162,7 +182,7 @@ void PrintGameInfo(Game* game)
     int length = snprintf(NULL, 0, "%d", score);
     char* str = malloc(length + 1);
     snprintf(str, length + 1, "%d", score);
-    cputsxy(25, 1, "Socre:");
+    cputsxy(25, 1, "Score:");
     cputsxy(32, 1, str);
     int currentMoves = game->moves;
     length = snprintf(NULL, 0, "%d", currentMoves);
@@ -196,11 +216,11 @@ void victoryCondition(Game* game)
             }
         }
     }
-    do {
-        textbackground(BLACK);
-        textcolor(WHITE);
-        clrscr();
-        cputsxy(1, 1, "Game Over Q to Save Score");
-    } while (Input() == NULL);
-  
+    textbackground(BLACK);
+    textcolor(WHITE);
+    clrscr();
+    cputsxy(1, 1, "Game Over Q to Save Score");
+    do {} while (Input() == NULL);
+    clrscr();
+    saveGame(game);
 }
